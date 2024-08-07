@@ -60,6 +60,9 @@ export async function fetchCardData() {
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
          FROM invoices`;
 
+    // 通过使用此模式，您可以：
+    // 同时开始执行所有数据提取，这可以提高性能。
+    // 使用可应用于任何库或框架的本机 JavaScript 模式。
     const data = await Promise.all([
       invoiceCountPromise,
       customerCountPromise,
