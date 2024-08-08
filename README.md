@@ -217,3 +217,36 @@ Suspense 回退与静态内容一起嵌入到初始 HTML 文件中。在构建�
 执行：如果计时器到达倒计时结束，则执行去抖功能。
 安装use-debounce：
 pnpm i use-debounce
+
+
+
+Server Actions? 什么是服务器操作？
+React Server Actions 允许您直接在服务器上运行异步代码。它们消除了创建 API 端点来改变数据的需要。相反，您可以编写在服务器上执行的异步函数，并且可以从客户端或服务器组件调用。
+安全性是 Web 应用程序的首要任务，因为它们很容易受到各种威胁。这就是服务器操作的用武之地。它们提供有效的安全解决方案，防止不同类型的攻击，保护您的数据并确保授权访问。服务器操作通过 POST 请求、加密闭包、严格输入检查、错误消息散列和主机限制等技术来实现这一点，所有这些技术一起工作可以显着增强应用程序的安全性。
+
+
+将表单与服务器操作结合使用
+在 React 中，您可以使用<form>元素中的action属性来调用操作。该操作将自动接收本机FormData对象，包含捕获的数据。
+For example: 例如：
+// Server Component
+export default function Page() {
+  // Action
+  async function create(formData: FormData) {
+    'use server';
+    // Logic to mutate data...
+  }
+  // Invoke the action using the "action" attribute
+  return <form action={create}>...</form>;
+}
+在服务器组件中调用服务器操作的一个优点是渐进增强 - 即使客户端上禁用 JavaScript，表单也可以工作。
+
+Next.js 与服务器操作
+服务器操作还与 Next.js缓存深度集成。通过服务器操作提交表单时，您不仅可以使用该操作来更改数据，还可以使用revalidatePath和revalidateTag等 API 重新验证关联的缓存。
+
+重新验证和重定向
+Next.js 有一个客户端路由器缓存，可将路由段存储在用户浏览器中一段时间​​。与预取一起，此缓存可确保用户可以在路由之间快速导航，同时减少向服务器发出的请求数量。
+由于您要更新发票路由中显示的数据，因此您希望清除此缓存并向服务器触发新请求。您可以使用 Next.js 中的revalidatePath函数来执行此操作：
+
+
+使用发票id创建动态路由段
+当您不知道确切的路段名称并希望根据数据创建路线时，Next.js 允许您创建动态路线段。这可以是博客文章标题、产品页面等。您可以通过将文件夹名称括在方括号中来创建动态路由段。例如， [id] 、 [post]或[slug] 。

@@ -7,10 +7,14 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
+import { createInvoice } from '@/app/lib/actions';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  // 在 HTML 中，您可以将 URL 传递给action属性。此 URL 将是您的表单数据应提交的目的地（通常是 API 端点）。
+  // 然而，在 React 中， action属性被认为是一个特殊的 prop - 这意味着 React 构建在它之上以允许调用操作。
+  // 服务器操作在幕后创建POST API 端点。这就是为什么您在使用服务器操作时不需要手动创建 API 端点。
   return (
-    <form>
+    <form action={createInvoice}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
