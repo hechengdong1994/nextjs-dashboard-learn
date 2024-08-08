@@ -6,6 +6,14 @@ import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
+import { Metadata } from 'next';
+ 
+// 但是，如果您想为特定页面添加自定义标题怎么办？您可以通过向页面本身添加metadata对象来完成此操作。嵌套页面中的元数据将覆盖父级中的元数据。
+export const metadata: Metadata = {
+  // title: 'Invoices | Acme Dashboard',
+  // 使用title.template
+  title: 'Invoices',
+};
 
 export default async function Page({
   searchParams

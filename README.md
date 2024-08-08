@@ -296,3 +296,48 @@ openssl rand -base64 32
 .env
 AUTH_SECRET=your-secret-key
 为了使身份验证在生产中正常工作，您还需要更新 Vercel 项目中的环境变量。查看本指南关于如何在 Vercel 上添加环境变量。
+
+
+元数据对于搜索引擎优化和可共享性至关重要。在本章中，我们将讨论如何将元数据添加到 Next.js 应用程序。
+什么是元数据？
+在 Web 开发中，元数据提供有关网页的其他详细信息。访问该页面的用户看不到元数据。相反，它在幕后工作，嵌入到页面的 HTML 中，通常在<head>元素中。这些隐藏信息对于搜索引擎和其他需要更好地了解网页内容的系统至关重要。
+为什么元数据很重要？
+元数据在增强网页的搜索引擎优化方面发挥着重要作用，使搜索引擎和社交媒体平台更容易访问和理解网页。适当的元数据可以帮助搜索引擎有效地对网页进行索引，从而提高其在搜索结果中的排名。此外，像开放图谱这样的元数据改善了社交媒体上共享链接的外观，使内容对用户更具吸引力和信息量更大。
+
+元数据的类型
+元数据有多种类型，每种都有其独特的用途。一些常见的类型包括：
+标题元数据：负责显示在浏览器选项卡上的网页标题。这对于搜索引擎优化至关重要，因为它可以帮助搜索引擎了解网页的内容。
+<title>Page Title</title>
+
+描述元数据：此元数据提供网页内容的简要概述，通常显示在搜索引擎结果中。
+<meta name="description" content="A brief description of the page content." />
+
+关键字元数据：此元数据包括与网页内容相关的关键字，帮助搜索引擎索引页面。
+<meta name="keywords" content="keyword1, keyword2, keyword3" />
+
+开放图元数据：此元数据增强了网页在社交媒体平台上共享时的表示方式，提供标题、描述和预览图像等信息。
+<meta property="og:title" content="Title Here" />
+<meta property="og:description" content="Description Here" />
+<meta property="og:image" content="image_url_here" />
+
+网站图标元数据：此元数据将网站图标（小图标）链接到网页，显示在浏览器的地址栏或选项卡中。
+<link rel="icon" href="path/to/favicon.ico" />
+
+
+添加元数据
+Next.js 有一个元数据 API，可用于定义应用程序元数据。您可以通过两种方式将元数据添加到应用程序中：
+基于配置：在layout.js或page.js文件中导出静态元metadata对象或动态generateMetadata函数。
+基于文件：Next.js 有一系列专门用于元数据目的的特殊文件：
+favicon.ico 、 apple-icon.jpg和icon.jpg ：用于 favicon 和图标
+opengraph-image.jpg和twitter-image.jpg ：用于社交媒体图像
+robots.txt ：提供搜索引擎抓取的说明
+sitemap.xml ：提供有关网站结构的信息
+您可以灵活地将这些文件用于静态元数据，也可以在项目中以编程方式生成它们。
+通过这两个选项，Next.js 将自动为您的页面生成相关的<head>元素。
+
+
+网站图标和开放图图像
+在/public文件夹中，您会注意到有两个图像： favicon.ico和opengraph-image.jpg 。
+将这些图像移至/app文件夹的根目录。
+完成此操作后，Next.js 将自动识别并使用这些文件作为您的网站图标和 OG 图像。您可以通过在开发工具中检查应用程序的<head>元素来验证这一点。
+您还可以使用ImageResponse构造函数创建动态 OG 图像。

@@ -1,5 +1,22 @@
 import '@/app/ui/global.css';
 import { inter } from './ui/fonts';
+import { Metadata } from 'next';
+
+// 可以在任何layout.js或page.js文件中包含metadata对象，以添加其他页面信息，例如标题和描述。 layout.js中的任何元数据都将被使用它的所有页面继承。
+// Next.js 会自动将标题和元数据添加到您的应用程序中。
+
+export const metadata: Metadata = {
+  // title: 'Acme Dashboard',
+  // 但我们在每个页面中重复应用程序的标题。如果发生变化，例如公司名称，您必须在每个页面上进行更新。
+  // 相反，您可以使用metadata对象中的title.template字段来定义页面标题的模板。该模板可以包含页面标题以及您想要包含的任何其他信息。
+  // 模板中的%s将替换为特定的页面标题。
+  title: {
+    template: '%s | Acme Dashboard',
+    default: 'Acme Dashboard',
+  },
+  description: 'The official Next.js Course Dashboard, built with App Router.',
+  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+};
 
 // 称为根布局并且是必需的。
 // 您添加到根布局的任何 UI 将在应用程序中的所有页面之间共享。
