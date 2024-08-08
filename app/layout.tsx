@@ -1,6 +1,9 @@
 import '@/app/ui/global.css';
 import { inter } from './ui/fonts';
 
+// 称为根布局并且是必需的。
+// 您添加到根布局的任何 UI 将在应用程序中的所有页面之间共享。
+// 您可以使用根布局来修改<html>和<body>标记，并添加元数据（您将在后面的章节中了解有关元数据的更多信息）。
 export default function RootLayout({
   children,
 }: {
