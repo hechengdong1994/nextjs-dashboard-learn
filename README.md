@@ -4,6 +4,47 @@ This is the starter template for the Next.js App Router Course. It contains the 
 
 For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
 
+## Chapter 1 Getting Started
+使用pnpm作为您的包管理器，因为它比npm或yarn更快、更高效。如果您没有安装pnpm ，您可以通过运行以下命令全局安装它：
+npm install -g pnpm
+
+要创建 Next.js 应用程序，请打开终端， cd进入您想要保留项目的文件夹，然后运行以下命令：
+npx create-next-app@latest nextjs-dashboard --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" --use-pnpm
+此命令使用create-next-app ，这是一个命令行界面 (CLI) 工具，可为您设置 Next.js 应用程序。在上面的命令中，您还在启动示例中使用了--example标志对于这门课程。
+
+运行pnpm i安装项目的软件包。
+pnpm i
+接下来是pnpm dev来启动开发服务器。
+pnpm dev
+
+在中国大陆地区，可能出现pnpm i中的部分包安装超时，使用国内镜像源可以显著提高下载速度
+更改 pnpm 的注册表
+pnpm config set registry http://registry.npm.taobao.org/
+清理缓存
+pnpm cache clean
+重新尝试安装
+pnpm i
+
+## Chapter 2 CSS Styling
+使用clsx库切换类名
+在某些情况下，您可能需要根据状态或其他条件有条件地设置元素的样式。
+clsx是一个可以让您轻松切换类名的库。我们建议您查看文档有关更多详细信息，但这是基本用法：
+/app/ui/invoices/status.tsx
+import clsx from 'clsx';
+export default function InvoiceStatus({ status }: { status: string }) {
+  return (
+    <span
+      className={clsx(
+        'inline-flex items-center rounded-full px-2 py-1 text-sm',
+        {
+          'bg-gray-100 text-gray-500': status === 'pending',
+          'bg-green-500 text-white': status === 'paid',
+        },
+      )}
+    >
+    // ...
+)}
+
 为什么要优化字体？
 字体在网站设计中发挥着重要作用，但如果需要获取和加载字体文件，在项目中使用自定义字体可能会影响性能。
 Cumulative Layout Shift累积布局偏移是 Google 用于评估网站性能和用户体验的指标。对于字体，当浏览器最初以后备字体或系统字体呈现文本，然后在加载后将其交换为自定义字体时，就会发生布局转换。这种交换可能会导致文本大小、间距或布局发生变化，从而移动其周围的元素。

@@ -1,3 +1,4 @@
+// Next.js应用程序中的根布局文件(layout.js 或 root.layout.js)。它负责设置全局的 HTML 结构、字体样式以及元数据。
 import '@/app/ui/global.css';
 import { inter } from './ui/fonts';
 import { Metadata } from 'next';
@@ -28,6 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* antialiased: 抗锯齿字体平滑效果 */}
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
